@@ -1,38 +1,36 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
-
-public enum GameEvent{   
-   Ak47Upgrade,
-   Mp90Upgrade,
-   AxeUpgrade,
-   OnIncreaseHealthUI,
-   OnDecreaseHealthUI,
-   OnIncreaseCoinUI,
-   OnDecreaseCoinUI
-   }
-
-  public static class EventManager
+public enum GameEvent
 {
-    private static Dictionary<GameEvent, Action> eventTable = new Dictionary<GameEvent, Action>();
+    Ak47Upgrade,
+    Mp90Upgrade,
+    AxeUpgrade,
+    OnIncreaseHealthUI,
+    OnDecreaseHealthUI,
+    OnIncreaseCoinUI,
+    OnDecreaseCoinUI
+}
 
-    public static void AddHandler(GameEvent gameEvent, Action action)
+public static class EventManager
+{
+    private static Dictionary<GameEvent, Delegate> eventTable = new Dictionary<GameEvent, Delegate>();
+
+    public static void AddHandler<T>(GameEvent gameEvent, Action<T> handler)
     {
         if (!eventTable.ContainsKey(gameEvent))
         {
-            eventTable[gameEvent] = action;
+            eventTable[gameEvent] = null;
         }
-        else
-        {
-            eventTable[gameEvent] += action;
-        }
+
+        eventTable[gameEvent] = (Action<T>)eventTable[gameEvent] + handler;
     }
 
-    public static void RemoveHandler(GameEvent gameEvent, Action action)
+    public static void RemoveHandler<T>(GameEvent gameEvent, Action<T> handler)
     {
         if (eventTable.ContainsKey(gameEvent))
         {
-            eventTable[gameEvent] -= action;
+            eventTable[gameEvent] = (Action<T>)eventTable[gameEvent] - handler;
             if (eventTable[gameEvent] == null)
             {
                 eventTable.Remove(gameEvent);
@@ -40,11 +38,11 @@ public enum GameEvent{
         }
     }
 
-    public static void Broadcast(GameEvent gameEvent)
+    public static void Broadcast<T>(GameEvent gameEvent, T arg)
     {
-        if (eventTable.ContainsKey(gameEvent) && eventTable[gameEvent] != null)
+        if (eventTable.ContainsKey(gameEvent) && eventTable[gameEvent] is Action<T> action)
         {
-            eventTable[gameEvent]();
+            action.Invoke(arg);
         }
     }
 }

@@ -4,21 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MedKit
   - Coin
-  - Enemy
+  - PlayerHand
   - Weapon
   - Gun
   - Box
-  - PlayerHand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - 
   - Water
   - UI
-  - 
+  - WeaponsIconsLayer
   - 
   - 
   - 

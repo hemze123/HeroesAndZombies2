@@ -1,40 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class CoinDisplayUI : MonoBehaviour
 {
-
     [SerializeField] private TMP_Text coinText;
-    // Start is called before the first frame update
-    
-private void OnEnable()
+
+    private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnIncreaseCoinUI, OnCoinIncreased);
-        EventManager.AddHandler(GameEvent.OnDecreaseCoinUI, OnCoinDecreased);
+        EventManager.AddHandler<int>(GameEvent.OnIncreaseCoinUI, UpdateCoinUI);
+        EventManager.AddHandler<int>(GameEvent.OnDecreaseCoinUI, UpdateCoinUI);
     }
 
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnIncreaseCoinUI, OnCoinIncreased);
-        EventManager.RemoveHandler(GameEvent.OnDecreaseCoinUI, OnCoinDecreased);
+        EventManager.RemoveHandler<int>(GameEvent.OnIncreaseCoinUI, UpdateCoinUI);
+        EventManager.RemoveHandler<int>(GameEvent.OnDecreaseCoinUI, UpdateCoinUI);
     }
 
-
-     private void OnCoinIncreased()
-    {
-        UpdateCoinUI(Collector.Instance.GetCoinCount());
-    }
-
-    private void OnCoinDecreased()
-    {
-        UpdateCoinUI(Collector.Instance.GetCoinCount());
-    }
     private void UpdateCoinUI(int coinValue)
     {
-        coinText.text = "$" + coinValue.ToString();
+        coinText.text = $"${coinValue}";
     }
-
 }

@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class MedKit : MonoBehaviour, ICollectible
 {
-    public int medkitValue;
+    [SerializeField] private int healAmount = 25;
+
     public void CollectItem()
     {
-        Collector.Instance.CollectMedKit(medkitValue);
-        Debug.Log("MedKit");
+        Collector.Instance.CollectMedKit(healAmount);
+        Destroy(gameObject); // MedKit toplandıktan sonra yok edilir.
     }
 }

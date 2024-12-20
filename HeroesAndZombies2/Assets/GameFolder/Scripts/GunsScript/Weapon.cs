@@ -3,36 +3,69 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponStats
 {
+    [Tooltip("Silah adı")]
     public string weaponName;
-    public int damage;
-    public float fireRate;
+
+    [Tooltip("Temel hasar miktarı")]
+    public int baseDamage;
+
+    [Tooltip("Temel ateş hızı (saniye cinsinden)")]
+    public float baseFireRate;
+
+    [Tooltip("Maksimum mermi sayısı (sadece ranged silahlar için)")]
     public int maxAmmo;
+
+    [Tooltip("Mevcut mermi sayısı (sadece ranged silahlar için)")]
     public int currentAmmo;
+
+    [Tooltip("Yükseltme seviyesi")]
     public int upgradeLevel = 0;
+
+    [Tooltip("Dayanıklılık (sadece melee silahlar için)")]
+    public int durability = 100;
+
+    [Tooltip("Yükseltme başına hasar çarpanı")]
+    public float upgradeDamageMultiplier = 1.2f;
+
+    [Tooltip("Yükseltme başına ateş hızı azaltma çarpanı")]
+    public float upgradeFireRateMultiplier = 0.9f;
+
+    [Tooltip("Yükseltme başına dayanıklılık artışı (sadece melee için)")]
+    public int upgradeDurabilityBonus = 20;
+
+    [Tooltip("Bıçak gibi dayanıklılığı sonsuz olan silahlar için")]
+    public bool infiniteDurability = false;
 }
 
 public class Weapon : MonoBehaviour
 {
     public enum WeaponType { Melee, Ranged }
-    public WeaponType weaponType;
-    public int damage;
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public WeaponStats stats;
-    private float nextFireTime;
-    public int maxUpgradeLevel = 3; // Maximum upgrade level
 
-    // Melee weapon properties
-    public float attackDamage = 25f;      // Damage dealt
-    public float attackRange = 2f;        // Attack range
-    public LayerMask enemyLayer;          // Enemy layer to detect only enemies
+    [Tooltip("Silah türü (Melee veya Ranged)")]
+    public WeaponType weaponType;
+
+    [Tooltip("Mermi prefabı (sadece ranged silahlar için)")]
+    public GameObject bulletPrefab;
+
+    [Tooltip("Ateşleme noktası (sadece ranged silahlar için)")]
+    public Transform firePoint;
+
+    [Tooltip("Silah istatistikleri")]
+    public WeaponStats stats;
+
+    private float nextFireTime;
+    public int maxUpgradeLevel = 5;
 
     void Start()
+    {
+        InitializeWeapon();
+    }
+
+    private void InitializeWeapon()
     {
         if (weaponType == WeaponType.Ranged)
         {
             stats.currentAmmo = stats.maxAmmo;
-            damage = stats.damage;
         }
     }
 
@@ -40,59 +73,77 @@ public class Weapon : MonoBehaviour
     {
         if (weaponType == WeaponType.Ranged)
         {
-            if (Time.time > nextFireTime && stats.currentAmmo > 0)
-            {
-                nextFireTime = Time.time + stats.fireRate;
-                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                stats.currentAmmo--;
-            }
+            HandleRangedFire();
         }
-         if (weaponType == WeaponType.Melee)
+        else if (weaponType == WeaponType.Melee)
         {
-            // Detect enemies within a certain radius
-            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+            HandleMeleeAttack();
+        }
+    }
 
-            // Apply damage to each enemy hit
-            foreach (Collider enemy in hitEnemies)
+    private void HandleRangedFire()
+    {
+        if (Time.time > nextFireTime && stats.currentAmmo > 0)
+        {
+            nextFireTime = Time.time + stats.baseFireRate / Mathf.Pow(stats.upgradeFireRateMultiplier, stats.upgradeLevel);
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            stats.currentAmmo--;
+
+            Debug.Log($"Fired! Ammo left: {stats.currentAmmo}");
+        }
+        else if (stats.currentAmmo <= 0)
+        {
+            Debug.Log("No ammo left!");
+        }
+    }
+
+    private void HandleMeleeAttack()
+    {
+        if (!stats.infiniteDurability) // Eğer dayanıklılık sonsuz değilse
+        {
+            stats.durability--;
+            Debug.Log($"Melee attack! Remaining durability: {stats.durability}");
+
+            if (stats.durability <= 0)
             {
-                Enemy enemyHealth = enemy.GetComponent<Enemy>();
-                if (enemyHealth != null)
-                {
-                    enemyHealth.TakeDamage(attackDamage);
-                    Debug.Log(enemy.name + " took damage: " + attackDamage);
-                }
+                Debug.Log($"{stats.weaponName} is broken!");
+                Destroy(gameObject); // Silah yok olur
             }
         }
     }
 
-    // Melee weapon attack function
-    public void Attack()
+    private void OnTriggerEnter(Collider other)
     {
-       if(Input.GetKeyDown(KeyCode.H)){
-         Fire();
-       }
-       
+        if (weaponType == WeaponType.Melee && other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
+                // enemy.TakeDamage(totalDamage); // Burayı kendi düşman sistemine göre tamamla
+                Debug.Log($"{totalDamage} damage dealt to {enemy.name}");
+            }
+        }
     }
 
     public void UpgradeWeapon()
     {
-        if (stats.upgradeLevel < maxUpgradeLevel) // Check maximum upgrade level
+        if (stats.upgradeLevel < maxUpgradeLevel)
         {
             stats.upgradeLevel++;
-            // Increase stats based on upgrade level
-            stats.damage += 5;
-            stats.fireRate -= 0.1f;
-            // Additional upgrades can be applied here
-        }
-    }
+            stats.baseDamage = Mathf.CeilToInt(stats.baseDamage * stats.upgradeDamageMultiplier);
+            stats.baseFireRate *= stats.upgradeFireRateMultiplier;
 
-    // Visualize the melee attack range in the editor
-    private void OnDrawGizmosSelected()
-    {
-        if (weaponType == WeaponType.Melee)
+            if (!stats.infiniteDurability) // Eğer dayanıklılık sonsuz değilse
+            {
+                stats.durability += stats.upgradeDurabilityBonus;
+            }
+
+            Debug.Log($"{stats.weaponName} upgraded to level {stats.upgradeLevel}! New damage: {stats.baseDamage}, Fire rate: {stats.baseFireRate}");
+        }
+        else
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
+            Debug.Log($"{stats.weaponName} is already at max upgrade level!");
         }
     }
 }

@@ -1,72 +1,51 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-   public static Collector Instance { get; private set; }
-   
-    
+    public static Collector Instance { get; private set; }
 
-    [Header("Setting")]
-    [SerializeField]private int coins= 0;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxHealth = 100;
+    private int currentHealth = 100;
+    private int maxHealth = 100;
+    private int coinCount = 0;
+
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void Start()
+    public int GetCurrentHealth() => currentHealth;
+    public int GetMaxHealth() => maxHealth;
+
+    public void PlayerTakeDamage(int damage)
     {
-        currentHealth = maxHealth;
-         EventManager.Broadcast(GameEvent.OnIncreaseHealthUI);
-         EventManager.Broadcast(GameEvent.OnIncreaseCoinUI);  
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
+        EventManager.Broadcast(GameEvent.OnDecreaseHealthUI, currentHealth);
+        Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player is dead!");
+            // Oyuncunun ölümü için gereken işlemleri buraya ekleyin.
+        }
     }
 
-
-    public void CollectCoin(int amount)
+    public void CollectMedKit(int healAmount)
     {
-        coins += amount;
-         EventManager.Broadcast(GameEvent.OnIncreaseCoinUI);
-        
+        currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
+        EventManager.Broadcast(GameEvent.OnIncreaseHealthUI, currentHealth);
+        Debug.Log($"Player healed by {healAmount}. Current health: {currentHealth}");
     }
 
-    public void UpgradeWeapon(int amount)
+    public void CollectCoin(int value)
     {
-        coins -= amount;
-       EventManager.Broadcast(GameEvent.OnDecreaseCoinUI);
+        coinCount += value;
+        EventManager.Broadcast(GameEvent.OnIncreaseCoinUI, coinCount);
     }
-
-    public void CollectMedKit(int amount)
-    {
-         currentHealth += amount;
-         currentHealth = Mathf.Min(currentHealth,100);
-         EventManager.Broadcast(GameEvent.OnIncreaseHealthUI);
-    }
-
-
-    public void PlayerTakeDamage(int amount)
-    {
-       currentHealth -= amount;
-       currentHealth = Mathf.Max(currentHealth,0);
-       EventManager.Broadcast(GameEvent.OnDecreaseHealthUI);
-    }
-
-     public int GetCurrentHealth(){
-        return currentHealth;
-     }
-
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-      public int GetCoinCount()
-    {
-        return coins;
-    }
-
 }

@@ -1,29 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour // ICollectible arayüzünü uygular
+public class Enemy : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    private float currentHealth;
+    [SerializeField] private int damageToPlayer = 10; // Oyuncuya verilen hasar
+    private bool canDamage = true; // Hasar verme kontrolü
 
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        currentHealth = maxHealth;
-    }
-
-    public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
-        if (currentHealth <= 0f)
+        if (collision.gameObject.CompareTag("Player") && canDamage)
         {
-            Die();
+            StartCoroutine(DamageCooldown());
+            Collector.Instance.PlayerTakeDamage(damageToPlayer);
         }
     }
 
-    void Die()
+    private IEnumerator DamageCooldown()
     {
-        // Düşmanın ölmesi için gerekli işlemleri yap (animasyon, yok olma vb.)
-        Debug.Log("Düşman öldü!");
-        Destroy(gameObject);
+        canDamage = false; // Hasar vermeyi devre dışı bırak
+        yield return new WaitForSeconds(1.0f); // 1 saniye bekle
+        canDamage = true; // Hasar vermeyi tekrar etkinleştir
     }
-    
 }
