@@ -28,39 +28,32 @@ public class PlayerController : MonoBehaviour
         EquipDefaultKnife(); // Oyunun başlangıcında varsayılan bıçağı donat
     }
 
-    void Update()
+void Update()
+{
+    if (currentGun != null)
     {
-        if (currentGun != null)
+        if (currentGun.weaponType == Weapon.WeaponType.Ranged && currentGun.stats.currentAmmo <= 0)
         {
-            if (currentGun.weaponType == Weapon.WeaponType.Ranged && currentGun.stats.currentAmmo <= 0)
-            {
-                HandleWeaponDestruction(); // Mermi bittiyse silah yok et
-            }
-            else if (currentGun.weaponType == Weapon.WeaponType.Melee && currentGun.stats.durability <= 0)
-            {
-                HandleWeaponDestruction(); // Dayanıklılık bittiyse silah yok et
-            }
+            HandleWeaponDestruction();
+        }
+        else if (currentGun.weaponType == Weapon.WeaponType.Melee && currentGun.stats.durability <= 0)
+        {
+            HandleWeaponDestruction();
+        }
 
-            if (isFiring)
-            {
-                if (currentGun.weaponType == Weapon.WeaponType.Ranged)
-                {
-                    currentGun.Fire();
-                    UpdateAmmoBar();
-                }
-                else if (currentGun.weaponType == Weapon.WeaponType.Melee)
-                {
-                    isAttacking = true;
-                    currentGun.Fire();
-                    UpdateAmmoBar(); // Dayanıklılık barını güncelle
-                }
-            }
-            else
-            {
-                isAttacking = false;
-            }
+        if (isFiring)
+        {
+            currentGun.Fire();
+            UpdateAmmoBar();
         }
     }
+    else if (suankiSilah == null || !suankiSilah.activeSelf)
+    {
+        EquipDefaultKnife();
+    }
+}
+
+
 
     public void OnPointerDown()
     {
@@ -109,48 +102,39 @@ public class PlayerController : MonoBehaviour
     }
 
     private void DropCurrentWeapon()
-    {
-        if (suankiSilah != null)
-        {
-            suankiSilah.transform.parent = null;
-            suankiSilah.GetComponent<BoxCollider>().enabled = true;
-
-            if (suankiSilah.GetComponent<Rigidbody>() == null)
-            {
-                suankiSilah.AddComponent<Rigidbody>();
-            }
-
-            Transform box = suankiSilah.transform.Find("Box");
-            Transform gun = suankiSilah.transform.Find("Gun");
-
-            if (box != null && gun != null)
-            {
-                box.gameObject.SetActive(true);
-                gun.gameObject.SetActive(false);
-            }
-
-            Vector3 dropDirection = transform.forward;
-            Vector3 dropPosition = suankiSilah.transform.position + dropDirection * 3 + Vector3.up * 2;
-            suankiSilah.transform.position = dropPosition;
-        }
-    }
-
-private void HandleWeaponDestruction()
 {
-    // Mevcut silahı yok et
     if (suankiSilah != null)
     {
-        Destroy(suankiSilah); // Silahı yok et
-        suankiSilah = null;
-        currentGun = null;
+        // Eğer silah default bıçak ise hiçbir şey yapma
+        if (suankiSilah == DefaultBicak)
+        {
+            return;
+        }
+
+        suankiSilah.transform.parent = null;
+        suankiSilah.GetComponent<BoxCollider>().enabled = true;
+
+        // Rigidbody ekleme işlemi sadece DefaultBicak değilse yapılır
+        if (suankiSilah.GetComponent<Rigidbody>() == null)
+        {
+            suankiSilah.AddComponent<Rigidbody>();
+        }
+
+        Transform box = suankiSilah.transform.Find("Box");
+        Transform gun = suankiSilah.transform.Find("Gun");
+
+        if (box != null && gun != null)
+        {
+            box.gameObject.SetActive(true);
+            gun.gameObject.SetActive(false);
+        }
+
+        Vector3 dropDirection = transform.forward;
+        Vector3 dropPosition = suankiSilah.transform.position + dropDirection * 3 + Vector3.up * 2;
+        suankiSilah.transform.position = dropPosition;
     }
-
-    // Varsayılan bıçağı yeniden aktif et
-    EquipDefaultKnife();
-
-    // Ammo barını kapat (varsayılan bıçak için gerekmez)
-    Bar.gameObject.SetActive(false);
 }
+
 
 private void EquipDefaultKnife()
 {
@@ -160,19 +144,19 @@ private void EquipDefaultKnife()
         return;
     }
 
-    // Varsayılan bıçağı aktif hale getir
+    // Default bıçağı aktif hale getir
     DefaultBicak.SetActive(true);
+    
+    // SuankiSilah referansını güncelle
+    suankiSilah = DefaultBicak;
 
-    // Varsayılan bıçağı doğru pozisyona ve rotasyona ayarla
-    DefaultBicak.transform.SetParent(silahPosition, false);
+    // Bıçağın pozisyonunu ve rotasyonunu güncelle (isteğe bağlı)
+    DefaultBicak.transform.SetParent(silahPosition);
     DefaultBicak.transform.localPosition = Vector3.zero;
     DefaultBicak.transform.localRotation = Quaternion.identity;
 
-    // Animator'ı varsayılan bıçağa uygun şekilde güncelle
+    // Animator'ı bıçak moduna güncelle
     playerMovement.playerAnimator.SetInteger("WeaponType_int", 0);
-
-    // SuankiSilah referansını DefaultBicak olarak ayarla
-    suankiSilah = DefaultBicak;
 }
 
 
@@ -189,14 +173,14 @@ private void PickUpWeapon(GameObject newWeapon)
         Destroy(newWeapon.GetComponent<Rigidbody>());
     }
 
-    // Yeni silah alındığında varsayılan bıçağı pasif yap
+    // Varsayılan bıçağı sadece pasif yap, fakat parent'ı değiştirme
     if (DefaultBicak != null)
     {
         DefaultBicak.SetActive(false);
+        DefaultBicak.transform.SetParent(transform);  // Bıçak her zaman player'ın child'ı olarak kalır
     }
 
     suankiSilah = newWeapon;
-    suankiSilah.transform.parent = silahPosition;
 
     Transform box = suankiSilah.transform.Find("Box");
     Transform gun = suankiSilah.transform.Find("Gun");
@@ -221,8 +205,21 @@ private void PickUpWeapon(GameObject newWeapon)
 }
 
 
+private void HandleWeaponDestruction()
+{
+    if (suankiSilah != null)
+    {
+        Destroy(suankiSilah);
+        suankiSilah = null;
+        currentGun = null;
+    }
+           
+    // Varsayılan bıçağı yeniden aktif et
+    EquipDefaultKnife();
 
-
+    // Ammo barını kapat (varsayılan bıçak için gerekmez)
+    Bar.gameObject.SetActive(false);
+}
 
 
     private void UpdateAmmoBar()

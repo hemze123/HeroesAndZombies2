@@ -34956,6 +34956,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Machete_01
       objectReference: {fileID: 0}
+    - target: {fileID: 6513287308755413507, guid: 6081db1fe4c203e4fbebebc43f483d6a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
