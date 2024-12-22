@@ -98,33 +98,48 @@ public class Weapon : MonoBehaviour
     }
 
     private void HandleMeleeAttack()
+{
+    if (!stats.infiniteDurability) 
     {
-        if (!stats.infiniteDurability) // Eğer dayanıklılık sonsuz değilse
-        {
-            stats.durability--;
-            Debug.Log($"Melee attack! Remaining durability: {stats.durability}");
+        stats.durability--;
+        Debug.Log($"Melee attack! Remaining durability: {stats.durability}");
 
-            if (stats.durability <= 0)
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 1.5f);  // Yarıçapı ayarlayın
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.CompareTag("Enemy"))
             {
-                Debug.Log($"{stats.weaponName} is broken!");
-                Destroy(gameObject); // Silah yok olur
+                Enemy e = enemy.GetComponent<Enemy>();
+                if (e != null)
+                {
+                    int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
+                    e.TakeDamage(totalDamage);
+                    Debug.Log($"Dealt {totalDamage} damage to {enemy.name}");
+                }
             }
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (weaponType == WeaponType.Melee && other.CompareTag("Enemy"))
+        if (stats.durability <= 0)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
-                // enemy.TakeDamage(totalDamage); // Burayı kendi düşman sistemine göre tamamla
-                Debug.Log($"{totalDamage} damage dealt to {enemy.name}");
-            }
+            Debug.Log($"{stats.weaponName} is broken!");
+            Destroy(gameObject);
         }
     }
+}
+
+ private void OnCollisionEnter(Collision collision)
+{
+    if (weaponType == WeaponType.Melee && collision.gameObject.CompareTag("Enemy"))
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
+            enemy.TakeDamage(totalDamage);
+            Debug.Log($"Dealt {totalDamage} damage to {enemy.name}");
+        }
+    }
+}
 
     public void UpgradeWeapon()
     {

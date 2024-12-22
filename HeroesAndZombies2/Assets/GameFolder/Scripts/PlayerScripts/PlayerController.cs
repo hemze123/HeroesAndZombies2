@@ -41,7 +41,7 @@ void Update()
             HandleWeaponDestruction();
         }
 
-        if (isFiring)
+        if (isFiring && currentGun != null )
         {
             currentGun.Fire();
             UpdateAmmoBar();

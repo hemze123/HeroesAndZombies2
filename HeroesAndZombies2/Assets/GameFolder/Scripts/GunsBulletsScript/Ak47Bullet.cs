@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Ak47Bullet : Bullet
+public class Ak47Bullet : MonoBehaviour
 {
-    public int BulletDamage = 10; // Varsayılan mermi hasarı
+    public int bulletDamage = 10; // Varsayılan mermi hasarı
 
     private void OnEnable()
     {
@@ -15,10 +15,24 @@ public class Ak47Bullet : Bullet
         // Ak47Upgrade olayından aboneliği kaldır
         EventManager.RemoveHandler<int>(GameEvent.Ak47Upgrade, UpgradeBulletDamage);
     }
+   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(bulletDamage);
+            }
+            Destroy(gameObject);  // Mermi yok edilir
+        }
+    }
+
 
     private void UpgradeBulletDamage(int upgradeAmount)
     {
-        BulletDamage += upgradeAmount; // Hasar değerini gelen parametre kadar artır
-        Debug.Log($"AK-47 Bullet Damage upgraded by {upgradeAmount}. New Damage: {BulletDamage}");
+        bulletDamage += upgradeAmount; // Hasar değerini gelen parametre kadar artır
+        Debug.Log($"AK-47 Bullet Damage upgraded by {upgradeAmount}. New Damage: {bulletDamage}");
     }
 }

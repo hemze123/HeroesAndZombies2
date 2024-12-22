@@ -1,26 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int bulletDamage = 10; // Varsayılan mermi hasarı
 
-   // public int BulletDamage;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        // Ak47Upgrade olayına abone ol
+        EventManager.AddHandler<int>(GameEvent.Ak47Upgrade, UpgradeBulletDamage);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        // Ak47Upgrade olayından aboneliği kaldır
+        EventManager.RemoveHandler<int>(GameEvent.Ak47Upgrade, UpgradeBulletDamage);
     }
-
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("Enemy")) {
-          //  other.gameObject.GetComponent<Enemy>().TakeDamage(BulletDamage);
+   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(bulletDamage);
+            }
+            Destroy(gameObject);  // Mermi yok edilir
         }
     }
+
+
+    private void UpgradeBulletDamage(int upgradeAmount)
+    {
+        bulletDamage += upgradeAmount; // Hasar değerini gelen parametre kadar artır
+        Debug.Log($" Bullet Damage upgraded by {upgradeAmount}. New Damage: {bulletDamage}");
+    }
 }
+
