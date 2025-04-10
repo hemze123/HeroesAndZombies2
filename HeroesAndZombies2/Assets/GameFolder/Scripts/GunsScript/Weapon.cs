@@ -1,164 +1,87 @@
 using UnityEngine;
-
-[System.Serializable]
-public class WeaponStats
-{
-    [Tooltip("Silah adı")]
-    public string weaponName;
-
-    [Tooltip("Temel hasar miktarı")]
-    public int baseDamage;
-
-    [Tooltip("Temel ateş hızı (saniye cinsinden)")]
-    public float baseFireRate;
-
-    [Tooltip("Maksimum mermi sayısı (sadece ranged silahlar için)")]
-    public int maxAmmo;
-
-    [Tooltip("Mevcut mermi sayısı (sadece ranged silahlar için)")]
-    public int currentAmmo;
-
-    [Tooltip("Yükseltme seviyesi")]
-    public int upgradeLevel = 0;
-
-    [Tooltip("Dayanıklılık (sadece melee silahlar için)")]
-    public int durability = 100;
-
-    [Tooltip("Yükseltme başına hasar çarpanı")]
-    public float upgradeDamageMultiplier = 1.2f;
-
-    [Tooltip("Yükseltme başına ateş hızı azaltma çarpanı")]
-    public float upgradeFireRateMultiplier = 0.9f;
-
-    [Tooltip("Yükseltme başına dayanıklılık artışı (sadece melee için)")]
-    public int upgradeDurabilityBonus = 20;
-
-    [Tooltip("Bıçak gibi dayanıklılığı sonsuz olan silahlar için")]
-    public bool infiniteDurability = false;
-}
+using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
     public enum WeaponType { Melee, Ranged }
-
-    [Tooltip("Silah türü (Melee veya Ranged)")]
     public WeaponType weaponType;
-
-    [Tooltip("Mermi prefabı (sadece ranged silahlar için)")]
-    public GameObject bulletPrefab;
-
-    [Tooltip("Ateşleme noktası (sadece ranged silahlar için)")]
-    public Transform firePoint;
-
-    [Tooltip("Silah istatistikleri")]
     public WeaponStats stats;
+    public Transform firePoint;
+    public LineRenderer lineRenderer;
 
-    private float nextFireTime;
-    public int maxUpgradeLevel = 5;
+    public float nextFireTime;
 
-    void Start()
+    private IWeaponAttackStrategy attackStrategy;
+
+    private void Awake()
     {
-        InitializeWeapon();
-    }
+        attackStrategy = weaponType switch
+        {
+            WeaponType.Melee => new MeleeAttackStrategy(),
+            WeaponType.Ranged => new RangedAttackStrategy(),
+            _ => null
+        };
 
-    private void InitializeWeapon()
-    {
         if (weaponType == WeaponType.Ranged)
         {
-            stats.currentAmmo = stats.maxAmmo;
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
+            lineRenderer.material = new Material(Shader.Find("Unlit/Color")) { color = stats.rayColor };
+        }
+
+        if (!stats.infiniteDurability)
+            stats.currentDurability = stats.maxDurability;
+    }
+
+    public void TryAttack()
+    {
+        if (attackStrategy != null && attackStrategy.CanAttack(this))
+        {
+            attackStrategy.Attack(this);
+            nextFireTime = Time.time + GetFireRate();
         }
     }
+
+    public int CalculateDamage()
+    {
+        float damage = stats.baseDamage;
+
+        if (stats.upgradePaths.Count > 0 && stats.currentUpgradeLevel > 0)
+        {
+            damage *= Mathf.Pow(stats.upgradePaths[0].damageMultiplier, stats.currentUpgradeLevel);
+        }
+
+        return Mathf.CeilToInt(damage);
+    }
+
+    public float GetFireRate()
+    {
+        float fireRate = stats.baseFireRate;
+
+        if (stats.upgradePaths.Count > 0 && stats.currentUpgradeLevel > 0)
+        {
+            fireRate *= Mathf.Pow(stats.upgradePaths[0].fireRateMultiplier, stats.currentUpgradeLevel);
+        }
+
+        return fireRate;
+    }
+
+    public Vector3 GetFireOrigin() => firePoint != null ? firePoint.position : transform.position;
+    public Vector3 GetFireDirection() => firePoint != null ? firePoint.forward : transform.forward;
+
+    public void ClearRay()
+    {
+        if (lineRenderer != null)
+        {
+            lineRenderer.SetPosition(0, Vector3.zero);
+            lineRenderer.SetPosition(1, Vector3.zero);
+        }
+    }
+
 
     public void Fire()
     {
-        if (weaponType == WeaponType.Ranged)
-        {
-            HandleRangedFire();
-        }
-        else if (weaponType == WeaponType.Melee)
-        {
-            HandleMeleeAttack();
-        }
-    }
-
-    private void HandleRangedFire()
-    {
-        if (Time.time > nextFireTime && stats.currentAmmo > 0)
-        {
-            nextFireTime = Time.time + stats.baseFireRate / Mathf.Pow(stats.upgradeFireRateMultiplier, stats.upgradeLevel);
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            stats.currentAmmo--;
-
-            Debug.Log($"Fired! Ammo left: {stats.currentAmmo}");
-        }
-        else if (stats.currentAmmo <= 0)
-        {
-            Debug.Log("No ammo left!");
-        }
-    }
-
-    private void HandleMeleeAttack()
-{
-    if (!stats.infiniteDurability) 
-    {
-        stats.durability--;
-        Debug.Log($"Melee attack! Remaining durability: {stats.durability}");
-
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 1.5f);  // Yarıçapı ayarlayın
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.CompareTag("Enemy"))
-            {
-                Enemy e = enemy.GetComponent<Enemy>();
-                if (e != null)
-                {
-                    int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
-                    e.TakeDamage(totalDamage);
-                    Debug.Log($"Dealt {totalDamage} damage to {enemy.name}");
-                }
-            }
-        }
-
-        if (stats.durability <= 0)
-        {
-            Debug.Log($"{stats.weaponName} is broken!");
-            Destroy(gameObject);
-        }
-    }
-}
-
- private void OnCollisionEnter(Collision collision)
-{
-    if (weaponType == WeaponType.Melee && collision.gameObject.CompareTag("Enemy"))
-    {
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            int totalDamage = Mathf.CeilToInt(stats.baseDamage * Mathf.Pow(stats.upgradeDamageMultiplier, stats.upgradeLevel));
-            enemy.TakeDamage(totalDamage);
-            Debug.Log($"Dealt {totalDamage} damage to {enemy.name}");
-        }
-    }
-}
-
-    public void UpgradeWeapon()
-    {
-        if (stats.upgradeLevel < maxUpgradeLevel)
-        {
-            stats.upgradeLevel++;
-            stats.baseDamage = Mathf.CeilToInt(stats.baseDamage * stats.upgradeDamageMultiplier);
-            stats.baseFireRate *= stats.upgradeFireRateMultiplier;
-
-            if (!stats.infiniteDurability) // Eğer dayanıklılık sonsuz değilse
-            {
-                stats.durability += stats.upgradeDurabilityBonus;
-            }
-
-            Debug.Log($"{stats.weaponName} upgraded to level {stats.upgradeLevel}! New damage: {stats.baseDamage}, Fire rate: {stats.baseFireRate}");
-        }
-        else
-        {
-            Debug.Log($"{stats.weaponName} is already at max upgrade level!");
-        }
+      TryAttack();
     }
 }

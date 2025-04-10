@@ -13,10 +13,10 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-    public Animator playerAnimator;
+    public Animator playerAnimatorMove;
     // Update is called once per frame
    private void Awake() {
-    playerAnimator = GetComponentInChildren<Animator>();
+    playerAnimatorMove = GetComponentInChildren<Animator>();
     
   }
     private void Start()
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             UpdateMoveJoystick();
             UpdateLookJoystick();
         }
-        else playerAnimator.SetInteger("WeaponType_int", 0);
+        else playerAnimatorMove.SetInteger("WeaponType_int", 0);
     }
 
     void UpdateMoveJoystick()
@@ -53,10 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (hoz != 0 || ver != 0)
         {
-            playerAnimator.SetFloat("Speed_f", 0.5f);
+            playerAnimatorMove.SetFloat("Speed_f", 0.5f);
 
         }
-        else playerAnimator.SetFloat("Speed_f", 0);
+        else playerAnimatorMove.SetFloat("Speed_f", 0);
 
     }
 

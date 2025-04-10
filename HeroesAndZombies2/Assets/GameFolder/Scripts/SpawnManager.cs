@@ -1,62 +1,110 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyPrefabs;  // Düşman prefabları
-    [SerializeField] private GameObject[] itemPrefabs;  // Silah ve medkit prefabları
-    [SerializeField] private Transform[] spawnPoints;  // Spawn noktaları
-    [SerializeField] private float spawnInterval = 5.0f;  // Düşman spawn aralığı
-    [SerializeField] private float itemSpawnInterval = 10.0f;  // Silah ve medkit spawn aralığı
+    [Header("Spawn Noktaları")]
+    public Transform[] weaponSpawnPoints;
+    public Transform[] medkitSpawnPoints;
+    public Transform[] enemySpawnPoints;
+
+    [Header("Prefablar")]
+    public GameObject[] weaponPrefabs;
+    public GameObject[] enemyPrefabs; // Level'a göre farklı düşmanlar
+    public GameObject bossPrefab;
+    public GameObject medkitPrefab;
+
+    [Header("Ayarlar")]
+    public float spawnInterval = 5f;
+    public int maxMedkits = 3;
+    public int enemiesPerWave = 5;
+    public float difficultyRamp = 1.2f;
+
+    private List<GameObject> activeMedkits = new();
+    private int waveNumber = 1;
+    private int enemiesAlive = 0;
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemies());
-        StartCoroutine(SpawnItems());
+        StartCoroutine(WeaponSpawner());
+        StartCoroutine(MedkitSpawner());
+        StartCoroutine(WaveSpawner());
     }
 
-    private IEnumerator SpawnEnemies()
+    // SİLAH SPAWNER
+    private IEnumerator WeaponSpawner()
     {
         while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
-            SpawnEnemy();
+
+            Transform spawnPoint = weaponSpawnPoints[Random.Range(0, weaponSpawnPoints.Length)];
+            GameObject prefab = weaponPrefabs[Random.Range(0, weaponPrefabs.Length)];
+            Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         }
     }
 
-    private IEnumerator SpawnItems()
+    // MEDKIT SPAWNER
+    private IEnumerator MedkitSpawner()
     {
         while (true)
         {
-            yield return new WaitForSeconds(itemSpawnInterval);
-            SpawnItem();
+            yield return new WaitForSeconds(spawnInterval);
+
+            if (activeMedkits.Count < maxMedkits)
+            {
+                Transform spawnPoint = medkitSpawnPoints[Random.Range(0, medkitSpawnPoints.Length)];
+                GameObject medkit = Instantiate(medkitPrefab, spawnPoint.position, Quaternion.identity);
+                activeMedkits.Add(medkit);
+
+                medkit.GetComponent<Pickup>().onCollected += () => activeMedkits.Remove(medkit);
+            }
         }
     }
 
-    private void SpawnEnemy()
+    // WAVE SPAWNER
+    private IEnumerator WaveSpawner()
     {
-        if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
 
-        int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
-        int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
-
-        GameObject enemy = Instantiate(enemyPrefabs[randomEnemyIndex], 
-                                       spawnPoints[randomSpawnIndex].position, 
-                                       Quaternion.identity);
-        Debug.Log($"Spawned {enemy.name} at {spawnPoints[randomSpawnIndex].position}");
+            StartCoroutine(SpawnWave());
+            waveNumber++;
+            enemiesPerWave = Mathf.RoundToInt(enemiesPerWave * difficultyRamp);
+        }
     }
 
-    private void SpawnItem()
+    private IEnumerator SpawnWave()
     {
-        if (itemPrefabs.Length == 0 || spawnPoints.Length == 0) return;
+        for (int i = 0; i < enemiesPerWave; i++)
+        {
+            yield return new WaitForSeconds(1f);
 
-        int randomItemIndex = Random.Range(0, itemPrefabs.Length);
-        int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
+            Transform spawnPoint = enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)];
+            GameObject prefab = GetEnemyForCurrentWave();
+            GameObject enemy = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+            enemiesAlive++;
 
-        GameObject item = Instantiate(itemPrefabs[randomItemIndex], 
-                                      spawnPoints[randomSpawnIndex].position, 
-                                      Quaternion.identity);
-        Debug.Log($"Spawned {item.name} at {spawnPoints[randomSpawnIndex].position}");
+            enemy.GetComponent<Enemy>().onDeath += () => enemiesAlive--;
+        }
+
+        // Boss her 5 dalgada bir gelir
+        if (waveNumber % 5 == 0)
+        {
+            yield return new WaitForSeconds(2f);
+            Transform spawnPoint = enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)];
+            GameObject boss = Instantiate(bossPrefab, spawnPoint.position, Quaternion.identity);
+            enemiesAlive++;
+
+            boss.GetComponent<Enemy>().onDeath += () => enemiesAlive--;
+        }
+    }
+
+    private GameObject GetEnemyForCurrentWave()
+    {
+        int index = Mathf.Min(waveNumber / 2, enemyPrefabs.Length - 1);
+        return enemyPrefabs[index];
     }
 }

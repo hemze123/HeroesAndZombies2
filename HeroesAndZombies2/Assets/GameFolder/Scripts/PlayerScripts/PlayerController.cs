@@ -3,21 +3,26 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject suankiSilah;
-    public Transform silahPosition;
-    private PlayerMovement playerMovement;
-    private Weapon currentGun;
+    public GameObject suankiSilah; // Şu anda kullanılan silah
+    public Transform silahPosition; // Silahın tutulacağı pozisyon
+    private PlayerMovement playerMovement; // Oyuncu hareket kontrolü
+    private Weapon currentGun; // Şu anki silahın bileşeni
     public GameObject DefaultBicak; // Varsayılan bıçak objesi
-    public Button fireButton;
-    public GameObject Bar;
-    public Slider ammoBar;
-    private bool isFiring;
-    private bool isAttacking;
+    public Button fireButton; // Ateş etme butonu
+    public GameObject Bar; // Mermi/dayanıklılık barı
+    public Slider ammoBar; // Mermi/dayanıklılık barı slider'ı
+    private bool isFiring; // Ateş ediliyor mu?
+    private bool isAttacking; // Saldırı yapılıyor mu?
 
+    public Animator playerAnimatorController;
+
+     void Awake(){
+          playerAnimatorController = GetComponentInChildren<Animator>();
+     }
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        playerMovement.playerAnimator.SetInteger("WeaponType_int", 0);
+        playerAnimatorController.SetInteger("WeaponType_int", 5); // Başlangıçta bıçak animasyonu
 
         if (DefaultBicak == null)
         {
@@ -25,55 +30,69 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        EquipDefaultKnife(); // Oyunun başlangıcında varsayılan bıçağı donat
+        EquipDefaultKnife(); // Oyun başlangıcında varsayılan bıçağı donat
     }
 
-void Update()
-{
-    if (currentGun != null)
+    void Update()
     {
-        if (currentGun.weaponType == Weapon.WeaponType.Ranged && currentGun.stats.currentAmmo <= 0)
-        {
-            HandleWeaponDestruction();
-        }
-        else if (currentGun.weaponType == Weapon.WeaponType.Melee && currentGun.stats.durability <= 0)
+        if (currentGun != null)
+    {
+        // Silahın mermisi veya dayanıklılığı bittiğinde
+        if ((currentGun.weaponType == Weapon.WeaponType.Ranged && currentGun.stats.currentAmmo <= 0) ||
+            (currentGun.weaponType == Weapon.WeaponType.Melee && currentGun.stats.currentDurability <= 0))
         {
             HandleWeaponDestruction();
         }
 
-        if (isFiring && currentGun != null )
+        // Ateş etme işlemi
+        if (isFiring && currentGun != null)
         {
             currentGun.Fire();
             UpdateAmmoBar();
+
+            // Melee silah ateş ettiğinde animasyonu değiştir
+            if (currentGun.weaponType == Weapon.WeaponType.Melee)
+            {
+                playerAnimatorController.SetInteger("WeaponType_int", 12);
+            }
         }
     }
     else if (suankiSilah == null || !suankiSilah.activeSelf)
     {
-        EquipDefaultKnife();
+        EquipDefaultKnife(); // Silah yoksa varsayılan bıçağı donat
+    }
+    }
+
+  public void OnPointerDown()
+{
+    isFiring = true; // Ateş etmeye başla
+
+    if (currentGun != null)
+    {
+        if (currentGun.weaponType == Weapon.WeaponType.Melee)
+        {
+            playerAnimatorController.SetInteger("WeaponType_int", 12); // Melee saldırı animasyonu
+        }
+        
+        currentGun.Fire(); // Silah ateş etme fonksiyonunu çağır
+        UpdateAmmoBar();
     }
 }
 
-
-
-    public void OnPointerDown()
-    {
-        isFiring = true;
-    }
-
-    public void OnPointerUp()
-    {
-        isFiring = false;
-    }
+public void OnPointerUp()
+{
+    isFiring = false; // Ateş etmeyi durdur
+}
 
     private void OnCollisionEnter(Collision collision)
     {
-        HandleWeaponCollection(collision);
+        HandleWeaponCollection(collision); // Çarpışma durumunda silah toplama
     }
 
     private void HandleWeaponCollection(Collision collision)
     {
         GameObject collidedObject = collision.gameObject;
-        if (collidedObject.tag == "Weapon")
+        if (collidedObject.CompareTag("Weapon")) // Çarpışan nesne silah mı?
         {
             GameObject newWeapon = collidedObject;
 
@@ -82,166 +101,155 @@ void Update()
             {
                 if (suankiSilah != null)
                 {
-                    DropAndPickup(suankiSilah, newWeapon);
+                    DropAndPickup(suankiSilah, newWeapon); // Mevcut silahı bırak ve yeni silahı al
                 }
                 else
                 {
-                    PickUpWeapon(newWeapon);
+                    PickUpWeapon(newWeapon); // Yeni silahı al
                 }
                 currentGun = gunComponent;
-                Bar.gameObject.SetActive(true);
-                UpdateAmmoBar();
+                Bar.gameObject.SetActive(true); // Bar'ı göster
+                UpdateAmmoBar(); // Bar'ı güncelle
             }
         }
     }
 
     private void DropAndPickup(GameObject currentWeapon, GameObject newWeapon)
     {
-        DropCurrentWeapon();
-        PickUpWeapon(newWeapon);
+        DropCurrentWeapon(); // Mevcut silahı bırak
+        PickUpWeapon(newWeapon); // Yeni silahı al
     }
 
     private void DropCurrentWeapon()
-{
-    if (suankiSilah != null)
     {
-        // Eğer silah default bıçak ise hiçbir şey yapma
-        if (suankiSilah == DefaultBicak)
+        if (suankiSilah != null && suankiSilah != DefaultBicak) // Varsayılan bıçak değilse
         {
+            suankiSilah.transform.parent = null; // Parent'ı kaldır
+            suankiSilah.GetComponent<BoxCollider>().enabled = true; // Collider'ı etkinleştir
+
+            // Rigidbody ekle (eğer yoksa)
+            if (suankiSilah.GetComponent<Rigidbody>() == null)
+            {
+                Rigidbody rb = suankiSilah.AddComponent<Rigidbody>();
+                rb.interpolation = RigidbodyInterpolation.Interpolate;
+            }
+
+            // Silahın kutusunu ve modelini ayarla
+            Transform box = suankiSilah.transform.Find("Box");
+            Transform gun = suankiSilah.transform.Find("Gun");
+
+            if (box != null && gun != null)
+            {
+                box.gameObject.SetActive(true); // Kutu görünür
+                gun.gameObject.SetActive(false); // Silah modeli gizli
+            }
+
+            // Silahı ileriye doğru fırlat
+            Vector3 dropDirection = transform.forward;
+            Vector3 dropPosition = suankiSilah.transform.position + dropDirection * 3 + Vector3.up * 2;
+            suankiSilah.transform.position = dropPosition;
+        }
+    }
+
+    private void EquipDefaultKnife()
+    {
+        if (DefaultBicak == null)
+        {
+            Debug.LogError("DefaultBicak tanımlanmamış! Lütfen Inspector'da atayın.");
             return;
         }
 
-        suankiSilah.transform.parent = null;
-        suankiSilah.GetComponent<BoxCollider>().enabled = true;
+        // Varsayılan bıçağı aktif et
+        DefaultBicak.SetActive(true);
+        suankiSilah = DefaultBicak;
 
-        // Rigidbody ekleme işlemi sadece DefaultBicak değilse yapılır
-        if (suankiSilah.GetComponent<Rigidbody>() == null)
-        {
-            suankiSilah.AddComponent<Rigidbody>();
-        }
+        // Bıçağı doğru pozisyon ve rotasyona yerleştir
+        DefaultBicak.transform.SetParent(silahPosition);
+        DefaultBicak.transform.localPosition = Vector3.zero;
+        DefaultBicak.transform.localRotation = Quaternion.identity;
 
-        Transform box = suankiSilah.transform.Find("Box");
-        Transform gun = suankiSilah.transform.Find("Gun");
+        // Animator'ı bıçak moduna ayarla
+        playerMovement.playerAnimatorMove.SetInteger("WeaponType_int", 5);
 
-        if (box != null && gun != null)
-        {
-            box.gameObject.SetActive(true);
-            gun.gameObject.SetActive(false);
-        }
-
-        Vector3 dropDirection = transform.forward;
-        Vector3 dropPosition = suankiSilah.transform.position + dropDirection * 3 + Vector3.up * 2;
-        suankiSilah.transform.position = dropPosition;
+        // Bar'ı gizle (bıçak için gerekmez)
+        Bar.gameObject.SetActive(false);
     }
-}
 
-
-private void EquipDefaultKnife()
-{
-    if (DefaultBicak == null)
+    private void PickUpWeapon(GameObject newWeapon)
     {
-        Debug.LogError("DefaultBicak tanımlanmamış! Lütfen Inspector'da atayın.");
-        return;
-    }
-
-    // Default bıçağı aktif hale getir
-    DefaultBicak.SetActive(true);
-    
-    // SuankiSilah referansını güncelle
-    suankiSilah = DefaultBicak;
-
-    // Bıçağın pozisyonunu ve rotasyonunu güncelle (isteğe bağlı)
-    DefaultBicak.transform.SetParent(silahPosition);
-    DefaultBicak.transform.localPosition = Vector3.zero;
-    DefaultBicak.transform.localRotation = Quaternion.identity;
-
-    // Animator'ı bıçak moduna güncelle
-    playerMovement.playerAnimator.SetInteger("WeaponType_int", 0);
-}
-
-
-private void PickUpWeapon(GameObject newWeapon)
-{
-    if (newWeapon == null)
+       if (newWeapon == null)
     {
         Debug.LogError("PickUpWeapon() metodu için verilen silah nesnesi null!");
         return;
     }
 
+    // Rigidbody'yi kaldır
     if (newWeapon.GetComponent<Rigidbody>() != null)
     {
         Destroy(newWeapon.GetComponent<Rigidbody>());
     }
 
-    // Varsayılan bıçağı sadece pasif yap, fakat parent'ı değiştirme
+    // Varsayılan bıçağı gizle
     if (DefaultBicak != null)
     {
         DefaultBicak.SetActive(false);
-        DefaultBicak.transform.SetParent(transform);  // Bıçak her zaman player'ın child'ı olarak kalır
     }
 
+    // Yeni silahı aktif et
     suankiSilah = newWeapon;
+    newWeapon.GetComponent<BoxCollider>().enabled = false; // Collider'ı devre dışı bırak
+    newWeapon.transform.SetParent(silahPosition); // Silahı silahPosition'a bağla
+    
+    currentGun = newWeapon.GetComponent<Weapon>();
 
+    // Silahın türüne göre farklı tutuş pozisyonları ve rotasyonları ayarla
+    if (currentGun.weaponType == Weapon.WeaponType.Ranged)
+    {
+        newWeapon.transform.localPosition = Vector3.zero; // Pozisyonu sıfırla
+        newWeapon.transform.localRotation = Quaternion.Euler(0, 90, 0); // Y ekseninde 90 derece döndür
+      //  playerAnimatorController.SetInteger("WeaponType_int", 10); // Ranged silah animasyonu
+    }
+    else if (currentGun.weaponType == Weapon.WeaponType.Melee)
+    {
+        newWeapon.transform.localPosition = new Vector3(0, -0.2f, 0.3f); // Melee silah için özel pozisyon
+        newWeapon.transform.localRotation = Quaternion.Euler(0, 0, 0); // Melee silah için düz tutuş
+       // playerAnimatorController.SetInteger("WeaponType_int", 12); // Melee silah animasyonu
+    }
+
+    // Silahın kutusunu ve modelini ayarla
     Transform box = suankiSilah.transform.Find("Box");
     Transform gun = suankiSilah.transform.Find("Gun");
-    newWeapon.GetComponent<BoxCollider>().enabled = false;
-    newWeapon.transform.position = silahPosition.position;
-
-    if (gun != null)
-    {
-        gun.transform.position = silahPosition.position;
-        gun.transform.rotation = silahPosition.rotation;
-    }
 
     if (box != null && gun != null)
     {
-        box.gameObject.SetActive(false);
-        gun.gameObject.SetActive(true);
+        box.gameObject.SetActive(false); // Kutu gizli
+        gun.gameObject.SetActive(true); // Silah modeli görünür
     }
 
-    currentGun = suankiSilah.GetComponent<Weapon>();
-    Bar.gameObject.SetActive(true); // Ammo barını göster
-    UpdateAmmoBar();
-}
+    Bar.gameObject.SetActive(true); // Bar'ı göster
+    UpdateAmmoBar(); // Bar'ı güncelle
+    }
 
-
-private void HandleWeaponDestruction()
-{
-    if (suankiSilah != null)
+    private void HandleWeaponDestruction()
     {
-        Destroy(suankiSilah);
-        suankiSilah = null;
-        currentGun = null;
+        if (suankiSilah != null && suankiSilah != DefaultBicak)
+        {
+            Destroy(suankiSilah); // Silahı yok et
+            suankiSilah = null;
+            currentGun = null;
+        }
+
+        // Varsayılan bıçağı donat
+        EquipDefaultKnife();
     }
-           
-    // Varsayılan bıçağı yeniden aktif et
-    EquipDefaultKnife();
-
-    // Ammo barını kapat (varsayılan bıçak için gerekmez)
-    Bar.gameObject.SetActive(false);
-}
-
 
     private void UpdateAmmoBar()
     {
         if (ammoBar != null && currentGun != null)
         {
-            if (currentGun.weaponType == Weapon.WeaponType.Ranged)
-            {
-                ammoBar.value = (float)currentGun.stats.currentAmmo / currentGun.stats.maxAmmo;
-            }
-            else if (currentGun.weaponType == Weapon.WeaponType.Melee)
-            {
-                ammoBar.value = (float)currentGun.stats.durability / 100; // Dayanıklılık için % bar
-            }
-        }
-    }
-
-    public void UpgradeCurrentWeapon()
-    {
-        if (currentGun != null)
-        {
-            currentGun.UpgradeWeapon();
+            ammoBar.value = (currentGun.weaponType == Weapon.WeaponType.Ranged) 
+                ? (float)currentGun.stats.currentAmmo / currentGun.stats.maxAmmo 
+                : (float)currentGun.stats.currentDurability / 100;
         }
     }
 }
