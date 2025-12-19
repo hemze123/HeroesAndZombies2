@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82144b1dafc403046899aa8cdab80470, type: 3}
+  m_Name: Wave_2
+  m_EditorClassIdentifier: 
+  enemiesPerWave: 40
+  spawnInterval: 0.7
+  enemyPrefabs:
+  - {fileID: 7601068047387323897, guid: 6cee16370ed62244aaed4d4d02f8c696, type: 3}
+  - {fileID: 2303572146611165494, guid: 675dd8825d0c5634586847710bf21946, type: 3}
+  - {fileID: 7838754904498929489, guid: 6a2a82b7a7853b442bb9961268a7128e, type: 3}
+  - {fileID: 2405444298738791312, guid: dfbfe00eb2ce7704283e7ed12cb2c1c7, type: 3}
+  - {fileID: 3559411345601528981, guid: c8b1da724a7aed14aa11c812cd90e6c1, type: 3}
+  spawnInBatches: 1
+  enemiesPerBatch: 10
+  batchInterval: 10
+  medkitSpawnChance: 0.253
+  weaponRespawnTime: 30

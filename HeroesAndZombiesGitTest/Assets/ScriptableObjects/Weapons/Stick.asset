@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59a0dfcb2a33fa44a816a3b0c43d7e9, type: 3}
+  m_Name: Stick
+  m_EditorClassIdentifier: 
+  itemName: 
+  icon: {fileID: 0}
+  cost: 0
+  hideInStore: 0
+  isUnlocked: 0
+  isSelected: 0
+  isDefault: 0
+  itemType: 0
+  weaponType: 0
+  weaponPrefab: {fileID: 0}
+  muzzleFlashPrefab: {fileID: 0}
+  bulletTrailPrefab: {fileID: 0}
+  impactEffectPrefab: {fileID: 0}
+  fireClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  swingClip: {fileID: 0}
+  weaponTypeAnimID: 0
+  idleAnimId: 0
+  attackAnimId: 0
+  attackToIdleDelay: 0.3
+  stats:
+    weaponName: 
+    baseDamage: 10
+    baseFireRate: 0.5
+    maxAmmo: 30
+    currentAmmo: 30
+    infiniteAmmo: 0
+    maxDurability: 100
+    currentDurability: 100
+    infiniteDurability: 0
+    range: 100
+    rayColor: {r: 1, g: 0, b: 0, a: 1}
+    rayDuration: 0.1
+    attackRadius: 3
+    attackAngle: 120
+    upgradePaths: []
+    currentUpgradeLevel: 0
+  currentLevel: 1
+  maxLevel: 5
+  upgradeCosts: 

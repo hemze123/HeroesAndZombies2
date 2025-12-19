@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59a0dfcb2a33fa44a816a3b0c43d7e9, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  itemName: Pistol
+  icon: {fileID: 21300000, guid: 59806d987f49de94397db12236d158f5, type: 3}
+  cost: 3000
+  hideInStore: 0
+  isUnlocked: 0
+  isSelected: 0
+  isDefault: 0
+  itemType: 1
+  weaponType: 1
+  weaponPrefab: {fileID: 0}
+  muzzleFlashPrefab: {fileID: 0}
+  bulletTrailPrefab: {fileID: 2255196609659354153, guid: 351542223c2e75f4c9773d3a52078b48,
+    type: 3}
+  impactEffectPrefab: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: 96434fb9d0ba9d14292e6d36365b6105, type: 3}
+  reloadClip: {fileID: 0}
+  swingClip: {fileID: 0}
+  weaponTypeAnimID: 4
+  idleAnimId: 4
+  attackAnimId: 4
+  attackToIdleDelay: 0.3
+  stats:
+    weaponName: Pistol
+    baseDamage: 18
+    baseFireRate: 0.25
+    maxAmmo: 12
+    currentAmmo: 12
+    infiniteAmmo: 0
+    maxDurability: 100
+    currentDurability: 100
+    infiniteDurability: 0
+    range: 30
+    rayColor: {r: 1, g: 0, b: 0, a: 1}
+    rayDuration: 0.6
+    attackRadius: 2
+    attackAngle: 60
+    upgradePaths:
+    - pathName: 1
+      maxLevel: 7
+      damageMultiplier: 1.1
+      fireRateMultiplier: 0.95
+      rangeMultiplier: 1.02
+    currentUpgradeLevel: 0
+  currentLevel: 1
+  maxLevel: 5
+  upgradeCosts: 58020000b004000008070000b80b0000100e0000

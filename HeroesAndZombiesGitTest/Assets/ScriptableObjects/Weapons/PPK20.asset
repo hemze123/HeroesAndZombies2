@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59a0dfcb2a33fa44a816a3b0c43d7e9, type: 3}
+  m_Name: PPK20
+  m_EditorClassIdentifier: 
+  itemName: PPK20
+  icon: {fileID: 21300000, guid: 19a0dbfb89ff601478d001ca307c4ef3, type: 3}
+  cost: 3500
+  hideInStore: 0
+  isUnlocked: 0
+  isSelected: 0
+  isDefault: 0
+  itemType: 1
+  weaponType: 1
+  weaponPrefab: {fileID: 8949425389457214154, guid: 6ec61995b81203441b981fa7bef49893,
+    type: 3}
+  muzzleFlashPrefab: {fileID: 8380355824039568950, guid: bfd63613f4fe02d41ae86d552840e1c4,
+    type: 3}
+  bulletTrailPrefab: {fileID: 2255196609659354153, guid: 351542223c2e75f4c9773d3a52078b48,
+    type: 3}
+  impactEffectPrefab: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: 96434fb9d0ba9d14292e6d36365b6105, type: 3}
+  reloadClip: {fileID: 0}
+  swingClip: {fileID: 0}
+  weaponTypeAnimID: 4
+  idleAnimId: 4
+  attackAnimId: 4
+  attackToIdleDelay: 0.3
+  stats:
+    weaponName: PPK20
+    baseDamage: 22
+    baseFireRate: 22
+    maxAmmo: 15
+    currentAmmo: 15
+    infiniteAmmo: 0
+    maxDurability: 100
+    currentDurability: 100
+    infiniteDurability: 0
+    range: 50
+    rayColor: {r: 1, g: 0, b: 0, a: 1}
+    rayDuration: 0.6
+    attackRadius: 2
+    attackAngle: 60
+    upgradePaths:
+    - pathName: 1
+      maxLevel: 7
+      damageMultiplier: 1.11
+      fireRateMultiplier: 0.95
+      rangeMultiplier: 1.02
+    currentUpgradeLevel: 0
+  currentLevel: 1
+  maxLevel: 5
+  upgradeCosts: bc0200007805000034080000f00a0000ac0d000068100000

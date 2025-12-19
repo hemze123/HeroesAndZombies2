@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59a0dfcb2a33fa44a816a3b0c43d7e9, type: 3}
+  m_Name: Mp90
+  m_EditorClassIdentifier: 
+  itemName: Mp90
+  icon: {fileID: 21300000, guid: 7a86095c9d93ee946a798cf9f186b269, type: 3}
+  cost: 6500
+  hideInStore: 0
+  isUnlocked: 1
+  isSelected: 0
+  isDefault: 0
+  itemType: 0
+  weaponType: 1
+  weaponPrefab: {fileID: 6173818298511782961, guid: 71699df01c10f4045a1aedf66f95f68e,
+    type: 3}
+  muzzleFlashPrefab: {fileID: 0}
+  bulletTrailPrefab: {fileID: 2255196609659354153, guid: 351542223c2e75f4c9773d3a52078b48,
+    type: 3}
+  impactEffectPrefab: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: 96434fb9d0ba9d14292e6d36365b6105, type: 3}
+  reloadClip: {fileID: 0}
+  swingClip: {fileID: 0}
+  weaponTypeAnimID: 4
+  idleAnimId: 4
+  attackAnimId: 4
+  attackToIdleDelay: 0.3
+  stats:
+    weaponName: Mp90
+    baseDamage: 16
+    baseFireRate: 0.9
+    maxAmmo: 50
+    currentAmmo: 50
+    infiniteAmmo: 0
+    maxDurability: 100
+    currentDurability: 100
+    infiniteDurability: 0
+    range: 50
+    rayColor: {r: 1, g: 0, b: 0, a: 1}
+    rayDuration: 0.1
+    attackRadius: 2
+    attackAngle: 60
+    upgradePaths:
+    - pathName: 1
+      maxLevel: 7
+      damageMultiplier: 1.09
+      fireRateMultiplier: 0.96
+      rangeMultiplier: 1.02
+    currentUpgradeLevel: 0
+  currentLevel: 1
+  maxLevel: 7
+  upgradeCosts: 14050000280a00003c0f00005014000064190000781e0000
