@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2022.3.57f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies6(Deep)
+C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies2/HeroesAndZombiesGitTest
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-56154
-Successfully changed project path to: C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies6(Deep)
-C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies6(Deep)
+50895
+Successfully changed project path to: C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies2/HeroesAndZombiesGitTest
+C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies2/HeroesAndZombiesGitTest
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,21 +49,21 @@ C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies6(Deep)
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [8940]  Target information:
+Player connection [11892]  Target information:
 
-Player connection [8940]  * "[IP] 172.29.0.1 [Port] 0 [Flags] 2 [Guid] 3937495463 [EditorId] 3937495463 [Version] 1048832 [Id] WindowsEditor(7,hemze) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [11892]  * "[IP] 172.29.0.1 [Port] 0 [Flags] 2 [Guid] 2359945644 [EditorId] 2359945644 [Version] 1048832 [Id] WindowsEditor(7,hemze) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [8940]  * "[IP] 192.168.0.107 [Port] 0 [Flags] 2 [Guid] 3937495463 [EditorId] 3937495463 [Version] 1048832 [Id] WindowsEditor(7,hemze) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [11892]  * "[IP] 192.168.0.107 [Port] 0 [Flags] 2 [Guid] 2359945644 [EditorId] 2359945644 [Version] 1048832 [Id] WindowsEditor(7,hemze) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [8940] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [8940] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [11892] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [11892] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
-Refreshing native plugins compatible for Editor in 40.11 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 45.37 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.57f1 (9d8bd91adc0a)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies6(Deep)/Assets
+[Subsystems] Discovering subsystems at path C:/Users/celil/OneDrive/Desktop/GitFolder/HeroesAndZombies2/HeroesAndZombiesGitTest/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -75,51 +75,51 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56412
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56384
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.57f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.023825 seconds.
-- Loaded All Assemblies, in  1.165 seconds
+Registered in 0.022122 seconds.
+- Loaded All Assemblies, in  1.068 seconds
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 650 ms
+Android Extension - Scanning For ADB Devices 772 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.532 seconds
-Domain Reload Profiling: 2691ms
-	BeginReloadAssembly (331ms)
+- Finished resetting the current domain, in  1.822 seconds
+Domain Reload Profiling: 2886ms
+	BeginReloadAssembly (330ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (2ms)
-	RebuildCommonClasses (113ms)
-	RebuildNativeTypeToScriptingClass (37ms)
-	initialDomainReloadingComplete (199ms)
-	LoadAllAssembliesAndSetupDomain (477ms)
-		LoadAssemblies (326ms)
+	RebuildCommonClasses (109ms)
+	RebuildNativeTypeToScriptingClass (28ms)
+	initialDomainReloadingComplete (155ms)
+	LoadAllAssembliesAndSetupDomain (440ms)
+		LoadAssemblies (327ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (471ms)
-			TypeCache.Refresh (466ms)
-				TypeCache.ScanAssembly (424ms)
+		AnalyzeDomain (432ms)
+			TypeCache.Refresh (428ms)
+				TypeCache.ScanAssembly (390ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (2ms)
-	FinalizeReload (1533ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (1824ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1387ms)
+		SetupLoadedEditorAssemblies (1666ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (902ms)
-			SetLoadedEditorAssemblies (10ms)
+			InitializePlatformSupportModulesInManaged (1069ms)
+			SetLoadedEditorAssemblies (14ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (6ms)
-			ProcessInitializeOnLoadAttributes (354ms)
-			ProcessInitializeOnLoadMethodAttributes (115ms)
+			BeforeProcessingInitializeOnLoad (8ms)
+			ProcessInitializeOnLoadAttributes (424ms)
+			ProcessInitializeOnLoadMethodAttributes (152ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -128,7 +128,7 @@ Domain Reload Profiling: 2691ms
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.894 seconds
+- Loaded All Assemblies, in  2.755 seconds
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -140,47 +140,49 @@ Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  2.159 seconds
-Domain Reload Profiling: 4046ms
-	BeginReloadAssembly (389ms)
+- Finished resetting the current domain, in  2.516 seconds
+Domain Reload Profiling: 5263ms
+	BeginReloadAssembly (450ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (15ms)
+		DisableScriptedObjects (19ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (52ms)
-	RebuildCommonClasses (88ms)
-	RebuildNativeTypeToScriptingClass (31ms)
-	initialDomainReloadingComplete (124ms)
-	LoadAllAssembliesAndSetupDomain (1255ms)
-		LoadAssemblies (849ms)
+		CreateAndSetChildDomain (55ms)
+	RebuildCommonClasses (109ms)
+	RebuildNativeTypeToScriptingClass (40ms)
+	initialDomainReloadingComplete (147ms)
+	LoadAllAssembliesAndSetupDomain (2000ms)
+		LoadAssemblies (1257ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (631ms)
-			TypeCache.Refresh (518ms)
-				TypeCache.ScanAssembly (473ms)
-			ScanForSourceGeneratedMonoScriptInfo (69ms)
-			ResolveRequiredComponents (39ms)
-	FinalizeReload (2160ms)
+		AnalyzeDomain (1001ms)
+			TypeCache.Refresh (739ms)
+				TypeCache.ScanAssembly (667ms)
+			ScanForSourceGeneratedMonoScriptInfo (120ms)
+			ResolveRequiredComponents (86ms)
+	FinalizeReload (2517ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1668ms)
+		SetupLoadedEditorAssemblies (1872ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (75ms)
-			SetLoadedEditorAssemblies (19ms)
+			InitializePlatformSupportModulesInManaged (107ms)
+			SetLoadedEditorAssemblies (17ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (275ms)
-			ProcessInitializeOnLoadAttributes (1093ms)
-			ProcessInitializeOnLoadMethodAttributes (191ms)
-			AfterProcessingInitializeOnLoad (14ms)
+			BeforeProcessingInitializeOnLoad (283ms)
+			ProcessInitializeOnLoadAttributes (1208ms)
+			ProcessInitializeOnLoadMethodAttributes (237ms)
+			AfterProcessingInitializeOnLoad (19ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (16ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.16 seconds
-Refreshing native plugins compatible for Editor in 18.55 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (21ms)
+database is locked
+Failed to delete database file Library/ShaderCache.db
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
+Refreshing native plugins compatible for Editor in 38.08 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5550 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 52 unused Assets / (2.8 MB). Loaded Objects now: 6024.
-Memory consumption went from 239.2 MB to 236.4 MB.
-Total: 12.096400 ms (FindLiveObjects: 0.922100 ms CreateObjectMapping: 1.260700 ms MarkObjects: 8.751000 ms  DeleteObjects: 1.159700 ms)
+Memory consumption went from 232.1 MB to 229.3 MB.
+Total: 12.196600 ms (FindLiveObjects: 0.913700 ms CreateObjectMapping: 1.369700 ms MarkObjects: 8.514700 ms  DeleteObjects: 1.395400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -195,3 +197,419 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1595155.313237 seconds.
+  path: Assets/Prefabs/Weapons/Ak47.prefab
+  artifactKey: Guid(106ff074ef9ff8e43a6b533babe1103e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Weapons/Ak47.prefab using Guid(106ff074ef9ff8e43a6b533babe1103e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '2d3b7294c0e213a7f835d1a9360c6252') in 0.686186 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 185
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/Prefabs/Weapons/SMG6.prefab
+  artifactKey: Guid(6ec61995b81203441b981fa7bef49893) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Weapons/SMG6.prefab using Guid(6ec61995b81203441b981fa7bef49893) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'f2085adea7fdb2d4c1ddb1ebf19f0440') in 0.219767 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 194
+========================================================================
+Received Import Request.
+  Time since last request: 7.111324 seconds.
+  path: Assets/ScriptableObjects/Weapons/PPK20.asset
+  artifactKey: Guid(919b77e72977ab84a8eeb33b77c47fb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Weapons/PPK20.asset using Guid(919b77e72977ab84a8eeb33b77c47fb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '7552c1847ece4495712f8ac820c12a90') in 0.016426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 127
+========================================================================
+Received Import Request.
+  Time since last request: 2444.430554 seconds.
+  path: Assets/Prefabs/Items/Coin2.prefab
+  artifactKey: Guid(a8c6ed9bde87974499762e7229b34c81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Items/Coin2.prefab using Guid(a8c6ed9bde87974499762e7229b34c81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '1521e9d3a7139145f6db55b3cb9b16eb') in 0.025984 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 46
+========================================================================
+Received Import Request.
+  Time since last request: 4.985317 seconds.
+  path: Assets/Prefabs/Enemies/Animals_Dog_Zombie_Doberman_01.prefab
+  artifactKey: Guid(cb7bcb8fb30e9a04396e530c6130e23a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/Animals_Dog_Zombie_Doberman_01.prefab using Guid(cb7bcb8fb30e9a04396e530c6130e23a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'cc5c200538f88f936d00eb4df685d72a') in 3.362940 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 541
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Prefabs/Enemies/SA_Zombie_AirportWorker.prefab
+  artifactKey: Guid(675dd8825d0c5634586847710bf21946) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/SA_Zombie_AirportWorker.prefab using Guid(675dd8825d0c5634586847710bf21946) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '2159707a72ea57f0dd081c690e230838') in 0.191680 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 295
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/Prefabs/Enemies/SA_Zombie_Cheerleader.prefab
+  artifactKey: Guid(38306c991a940d744b54a5ca3175ded0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/SA_Zombie_Cheerleader.prefab using Guid(38306c991a940d744b54a5ca3175ded0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'aafb3887e12135699dba75f2ce174b68') in 0.184959 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 295
+========================================================================
+Received Import Request.
+  Time since last request: 0.000127 seconds.
+  path: Assets/Prefabs/Enemies/SA_Zombie_Bellhop.prefab
+  artifactKey: Guid(6a2a82b7a7853b442bb9961268a7128e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/SA_Zombie_Bellhop.prefab using Guid(6a2a82b7a7853b442bb9961268a7128e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '887f524551a0209fa532e343a29b096b') in 0.131176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 295
+========================================================================
+Received Import Request.
+  Time since last request: 18.742615 seconds.
+  path: Assets/Prefabs/Characters/Farmer.prefab
+  artifactKey: Guid(e78893672e098ed4d80c4bafba8f78a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Characters/Farmer.prefab using Guid(e78893672e098ed4d80c4bafba8f78a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'a53a796d0f4dedad1f5ef42f6b6cbd8d') in 0.548909 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 834
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Prefabs/Characters/SoldierGirl.prefab
+  artifactKey: Guid(0d6064aec80fe2548a87f065d62876ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Characters/SoldierGirl.prefab using Guid(0d6064aec80fe2548a87f065d62876ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '2954f956b15daea71e06ae61b1b38360') in 0.296179 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 632
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Prefabs/Characters/WoodMan.prefab
+  artifactKey: Guid(dfad0451f5cd95f4482d93da93787197) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Characters/WoodMan.prefab using Guid(dfad0451f5cd95f4482d93da93787197) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '577d5ce34289241d3b5914647b694870') in 0.262188 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 632
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/Prefabs/Characters/OldMan.prefab
+  artifactKey: Guid(25b360e94ced8a04496bddfe34327d93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Characters/OldMan.prefab using Guid(25b360e94ced8a04496bddfe34327d93) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '4d82f99018afd6b9da7ccd9f952ddf2c') in 0.277785 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 834
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  5.667 seconds
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in 65.660 seconds
+Domain Reload Profiling: 71316ms
+	BeginReloadAssembly (676ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (20ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (275ms)
+	RebuildCommonClasses (123ms)
+	RebuildNativeTypeToScriptingClass (37ms)
+	initialDomainReloadingComplete (118ms)
+	LoadAllAssembliesAndSetupDomain (4701ms)
+		LoadAssemblies (4782ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (186ms)
+			TypeCache.Refresh (49ms)
+				TypeCache.ScanAssembly (6ms)
+			ScanForSourceGeneratedMonoScriptInfo (84ms)
+			ResolveRequiredComponents (49ms)
+	FinalizeReload (65662ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1747ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (105ms)
+			SetLoadedEditorAssemblies (18ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (263ms)
+			ProcessInitializeOnLoadAttributes (1112ms)
+			ProcessInitializeOnLoadMethodAttributes (226ms)
+			AfterProcessingInitializeOnLoad (22ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (24ms)
+Refreshing native plugins compatible for Editor in 19.59 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5412 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 42 unused Assets / (2.8 MB). Loaded Objects now: 6042.
+Memory consumption went from 207.2 MB to 204.4 MB.
+Total: 10.409500 ms (FindLiveObjects: 0.692500 ms CreateObjectMapping: 0.427400 ms MarkObjects: 8.045500 ms  DeleteObjects: 1.242000 ms)
+
+Prepare: number of updated asset objects reloaded= 5
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 3ead1caaecf1c488f20bcfeb224b6af5 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp-Editor: 57bfe1ab708ad4e431dd438a6a55df36 -> dce25c0be3113db334636f2688c39463
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 133b22d988aa8a6ae84e2dda30db50ce -> f42a23ec11f4b6f6927edffbe908e494
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.282 seconds
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  3.727 seconds
+Domain Reload Profiling: 5002ms
+	BeginReloadAssembly (392ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (12ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (86ms)
+	RebuildCommonClasses (83ms)
+	RebuildNativeTypeToScriptingClass (34ms)
+	initialDomainReloadingComplete (70ms)
+	LoadAllAssembliesAndSetupDomain (695ms)
+		LoadAssemblies (785ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (126ms)
+			TypeCache.Refresh (28ms)
+				TypeCache.ScanAssembly (5ms)
+			ScanForSourceGeneratedMonoScriptInfo (61ms)
+			ResolveRequiredComponents (33ms)
+	FinalizeReload (3728ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1283ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (65ms)
+			SetLoadedEditorAssemblies (17ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (217ms)
+			ProcessInitializeOnLoadAttributes (794ms)
+			ProcessInitializeOnLoadMethodAttributes (176ms)
+			AfterProcessingInitializeOnLoad (14ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Refreshing native plugins compatible for Editor in 16.04 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5413 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (2.8 MB). Loaded Objects now: 6052.
+Memory consumption went from 205.8 MB to 203.0 MB.
+Total: 9.524500 ms (FindLiveObjects: 0.981000 ms CreateObjectMapping: 0.437800 ms MarkObjects: 6.969800 ms  DeleteObjects: 1.132700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 3ead1caaecf1c488f20bcfeb224b6af5 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp-Editor: 57bfe1ab708ad4e431dd438a6a55df36 -> dce25c0be3113db334636f2688c39463
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: 133b22d988aa8a6ae84e2dda30db50ce -> f42a23ec11f4b6f6927edffbe908e494
+========================================================================
+Received Import Request.
+  Time since last request: 571.649196 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_AirportWorker.prefab
+  artifactKey: Guid(3c30f5af21f2ba74eafc170b2b3df88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_AirportWorker.prefab using Guid(3c30f5af21f2ba74eafc170b2b3df88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'a33e76a9c6ec4cfc5768a3760c297e42') in 0.302289 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Bellhop.prefab
+  artifactKey: Guid(ea9791ddb8d44474bbcec609b9748edf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Bellhop.prefab using Guid(ea9791ddb8d44474bbcec609b9748edf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'b17594e9ee726f20fa9f4bded1095bd5') in 0.082118 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Pilot.prefab
+  artifactKey: Guid(b0db85a3948205d47baea4b77656fb11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Pilot.prefab using Guid(b0db85a3948205d47baea4b77656fb11) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'ad85e9f46cbd5d6e8281c60c7b0d8196') in 0.083247 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Grandma.prefab
+  artifactKey: Guid(6b616d5eee8e5bf4abc92b3d1fff00bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Grandma.prefab using Guid(6b616d5eee8e5bf4abc92b3d1fff00bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '3e2c537d75a4889507b56b794251d0f5') in 0.082821 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Farmer.prefab
+  artifactKey: Guid(4b567cfc65370f04fbceead813c886d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Farmer.prefab using Guid(4b567cfc65370f04fbceead813c886d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '006bd1962c2c932136b03b42f11f95bc') in 0.086686 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/Prefabs/Enemies/SA_Zombie_Clown.prefab
+  artifactKey: Guid(8df72c02c1ee1ba4eb0882428aeecbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/SA_Zombie_Clown.prefab using Guid(8df72c02c1ee1ba4eb0882428aeecbff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'b3b88f334cf2d6ab8e215ad45a2ec29e') in 0.091792 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 295
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_FarmersDaughter.prefab
+  artifactKey: Guid(94a1f41d699408c4b89c5dd302ad12ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_FarmersDaughter.prefab using Guid(94a1f41d699408c4b89c5dd302ad12ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '4afb0a4276e1777f4f8cc387eb28df88') in 0.085434 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Shopkeeper.prefab
+  artifactKey: Guid(7822b01f89476d846847d47f7c45f689) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Shopkeeper.prefab using Guid(7822b01f89476d846847d47f7c45f689) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '1718f776176641b73dc001334bb06576') in 0.090630 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000110 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Tourist.prefab
+  artifactKey: Guid(02fa487f63c3989429418e446c705207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Tourist.prefab using Guid(02fa487f63c3989429418e446c705207) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '24502113f7856ce55479cffb57500859') in 0.092849 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_FootballPlayer.prefab
+  artifactKey: Guid(87e8f7080f063734abc6a8369a1ff993) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_FootballPlayer.prefab using Guid(87e8f7080f063734abc6a8369a1ff993) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '6dfa6a96c828f1437e275b91ddfdafd5') in 0.082493 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Businessman.prefab
+  artifactKey: Guid(ffd8d0a68e87f5640819a89549abfb79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Businessman.prefab using Guid(ffd8d0a68e87f5640819a89549abfb79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'aa29fc43a8f5442fc7f7a4af6d7c513a') in 0.088999 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Streetman.prefab
+  artifactKey: Guid(9172b776598ca90448277d43a7b00e08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Streetman.prefab using Guid(9172b776598ca90448277d43a7b00e08) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'e2aa2e9e51e6c59750c2b2f889afd3e0') in 0.089607 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_RoadWorker.prefab
+  artifactKey: Guid(4c55634be023e4d40ba3a85407347daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_RoadWorker.prefab using Guid(4c55634be023e4d40ba3a85407347daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '1cfbe1adf67d3e88a61431d24b39df37') in 0.087401 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Prisoner.prefab
+  artifactKey: Guid(366bb547ba7bba243addbcf5bea7e9fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Prisoner.prefab using Guid(366bb547ba7bba243addbcf5bea7e9fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'cbf0ee385d1ea6eb2cfb484f1fb4474c') in 0.089031 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Santa.prefab
+  artifactKey: Guid(86fad03278650744eaecbe900ae34d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameFolder/GameAssets/SimpleApocalypse/_Prefabs/Characters/Zombies/SA_Zombie_Santa.prefab using Guid(86fad03278650744eaecbe900ae34d6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '4d1ed09c7b9ba2d283085a14b85ce65b') in 0.084744 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 260
+========================================================================
+Received Import Request.
+  Time since last request: 251.441767 seconds.
+  path: Assets/Prefabs/Characters/Farmer.prefab
+  artifactKey: Guid(e78893672e098ed4d80c4bafba8f78a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Characters/Farmer.prefab using Guid(e78893672e098ed4d80c4bafba8f78a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '1a6906e7e631e5b8ba73fd2dbb9fe712') in 0.189633 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 831

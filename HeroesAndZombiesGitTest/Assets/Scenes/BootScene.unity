@@ -585,12 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 11400000, guid: 54ea61a78438cc94d95478fd1301c642, type: 2}
-  - {fileID: 11400000, guid: a446ca62f8bb48c4facc873c0c37db49, type: 2}
-  - {fileID: 11400000, guid: 4a58875277b606147bf938f810d2cedd, type: 2}
-  - {fileID: 11400000, guid: 828b351128e44e043859749f1e81e361, type: 2}
-  - {fileID: 11400000, guid: cc75346e2bec7c6448c8e2e8dcc3f222, type: 2}
   - {fileID: 11400000, guid: 1e633a25dd83bce4399df2764c3f1971, type: 2}
-  - {fileID: 11400000, guid: 59fe1e50834da80468db28d9fe706cfd, type: 2}
   weapons:
   - {fileID: 11400000, guid: 2d79bc807c08f9441917af03ad2baa12, type: 2}
   - {fileID: 11400000, guid: 58a2fc9092276644ea2291ec6ec099da, type: 2}
@@ -603,8 +598,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fd84338f8d932548a67b3a4751d3616, type: 2}
   levels:
   - {fileID: 11400000, guid: 9d1bd61e72af75d40b49dda7ce47f811, type: 2}
-  - {fileID: 11400000, guid: 3c04847fd84e14e408a7446e8d61bcf4, type: 2}
-  - {fileID: 11400000, guid: aeaafa9b8fd03e94a85a036a06df3829, type: 2}
 --- !u!4 &1395354399
 Transform:
   m_ObjectHideFlags: 0
